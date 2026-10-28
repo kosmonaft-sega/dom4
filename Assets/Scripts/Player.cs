@@ -45,12 +45,14 @@ public class Player : MonoBehaviour
 
     public void Heal()
     {
+        if(charStats.Hunger<=0) return;
         charStats.Hunger -= 20;
         charStats.Hp += 20;
     }
 
     public void Eat()
     {
+        if(charStats.Hunger>=charStats.charData.MaxHunger) return;
         charStats.Hunger += 20;
     }
 }
