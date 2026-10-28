@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] CharData charData;
+    [SerializeField] CharStats charStats;
     [SerializeField] EnemySpawner enemySpot;
 
     private List<CharStats> enemyList = new List<CharStats>();
@@ -12,14 +12,45 @@ public class Player : MonoBehaviour
         enemyList = enemySpot.enemyList;
     }
 
-    public void Damage()
+    private void OnEnable() {
+        enemySpot.attackOneEnemy += DamageOne;
+        enemySpot.giveXp += charStats.XpChange;
+    }
+
+    private void OnDisable() {
+        enemySpot.attackOneEnemy -= DamageOne;
+        enemySpot.giveXp -= charStats.XpChange;
+    }
+
+    public void Damage() //all baseDamage/3
     {
         if(enemyList == null)
             return;
         var tempList = new List<CharStats>(enemyList);
         foreach(CharStats enemy in tempList)
         {
-            enemy.Hp -= charData.BaseDamage;
+            enemy.Hp -= charStats.charData.BaseDamage/3;
+            charStats.Hp -= enemy.charData.BaseDamage;
         }
+    }
+    public void DamageOne(CharStats enemy)
+    {
+        var tempList = new List<CharStats>(enemyList);
+        foreach(CharStats _enemy in tempList)
+        {
+            charStats.Hp -= _enemy.charData.BaseDamage;
+        }
+        enemy.Hp -= charStats.charData.BaseDamage;
+    }
+
+    public void Heal()
+    {
+        charStats.Hunger -= 20;
+        charStats.Hp += 20;
+    }
+
+    public void Eat()
+    {
+        charStats.Hunger += 20;
     }
 }

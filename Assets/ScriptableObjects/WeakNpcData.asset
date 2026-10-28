@@ -15,3 +15,6 @@ MonoBehaviour:
   charName: Weak NPC
   maxHp: 75
   baseDamage: 5
+  startLevel: 1
+  startXp: 50
+  giveXp: 250

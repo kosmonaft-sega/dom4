@@ -15,3 +15,6 @@ MonoBehaviour:
   charName: Berserk
   maxHp: 50
   baseDamage: 25
+  startLevel: 3
+  startXp: 150
+  giveXp: 1000

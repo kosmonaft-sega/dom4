@@ -15,3 +15,6 @@ MonoBehaviour:
   charName: Normal NPC
   maxHp: 100
   baseDamage: 10
+  startLevel: 2
+  startXp: 100
+  giveXp: 500

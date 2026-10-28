@@ -15,3 +15,6 @@ MonoBehaviour:
   charName: You
   maxHp: 200
   baseDamage: 20
+  startLevel: 1
+  startXp: 350
+  giveXp: 0
